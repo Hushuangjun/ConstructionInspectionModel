@@ -4,6 +4,11 @@
 ## 模型训练及使用
 目标检测模型采用YOLOv5，数据集采用YOLO格式，图片及相应标签存放至`datasets`文件夹下。本项目也提供了本次作业训练得到的较优权重`best.pt`。
 模型保留了传统YOLOv5模型的训练、验证和预测的代码(见train.py、val.py和detect.py)，便于后续可加入一些新的数据集进行训练。对于权重默认采用`best.pt`，数据集格式默认为`data/custom_data.yaml`，其他默认参数取值详见源码。下面是一个较为完整的示例。
+
+**环境准备：**
+```
+pip install -r requirements.txt
+```
 **模型训练：**
 ```
 python train.py --data custom_data.yaml --weights best.pt --img 640 --batch-size 8 --device 0 --cache ram --epochs 100
@@ -12,7 +17,7 @@ python train.py --data custom_data.yaml --weights best.pt --img 640 --batch-size
 ```
 python val.py --weights best.pt --data custom_data.yaml  --img 640
 ```
-**模型预测：**
+**模型预测：**（预测单张图片，视频也可，选项同YOLO）
 ```
 python detect.py --weights best.pt --data custom_data.yaml --source ./data/images/21.jpg   
 ```
@@ -22,6 +27,11 @@ python detect.py --weights best.pt --data custom_data.yaml --source ./data/image
 python main.py --weights best.pt --data custom_data.yaml  --device 0
 ```
 也可以直接运行`python main.py`，参数默认采用为上面这行命令。
+
+
+tips:
+1. 云服务器中linux系统下中文支持：`cp /mnt/Arial.Unicode.ttf  /root/.config/Ultralytics/`，也就是说需要准备相应字体，否则图形化界面中文乱码。
+
 
 ## 模型调用的API
 当中在`utilsbymeself`文件夹下存放了几个工具，主要是调用外部API实现某种功能，要想运行，需要将相应的API key改成自己的，在各公司官网上都有详尽示例，这里就不再详细赘述。
@@ -37,3 +47,6 @@ python main.py --weights best.pt --data custom_data.yaml  --device 0
 
 ## 讨论
 限于水平和时间，模型肯定有诸多不足之处，还望见谅。如果新的想法，可一起交流。
+
+## 演示视频
+后期如果视频上传到B站了，附上相应的演示视频。
